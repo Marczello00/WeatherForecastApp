@@ -1,4 +1,4 @@
-# Mini-project-API
+# Weather forecast application
 
 
 
