@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d799b339-9b2d-4e0b-a270-8b423a285d7c" name="Changes" comment="Started smth">
-      <change afterPath="$PROJECT_DIR$/.idea/Mini-project-API.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/FirstPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/MainPage.py" afterDir="false" />
-    </list>
+    <list default="true" id="d799b339-9b2d-4e0b-a270-8b423a285d7c" name="Changes" comment="Created layout for current weather and 3-day forecast" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701778768783</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Created layout for current weather and 3-day forecast">
+      <option name="closed" value="true" />
+      <created>1703810236483</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703810236483</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,6 +150,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Started smth" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started smth" />
+    <MESSAGE value="Created layout for current weather and 3-day forecast" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created layout for current weather and 3-day forecast" />
   </component>
 </project>
