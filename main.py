@@ -1,7 +1,7 @@
-from tkinter import *
-from view.FirstPage import FirstPage
+import tkinter
+from view.MainPage import MainPage
 
 if __name__ == '__main__':
-    root = Tk()
-    FirstPage(root)
+    root = tkinter.Tk()
+    MainPage(root)
     root.mainloop()
