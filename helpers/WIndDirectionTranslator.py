@@ -1,4 +1,7 @@
-def getWindDirection(degrees):
+def obtainWindDirection(degrees):
+    if degrees is None:
+        return "Unknown"
+    degrees = degrees%360
     if degrees >= 337.5 or degrees < 22.5:
         return "N"
     elif degrees >= 22.5 and degrees < 67.5:
