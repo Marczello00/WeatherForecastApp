@@ -1,5 +1,6 @@
 from PIL import Image
 IconMapping = {
+-1: "error.png",
 0: "sunny.png",
 1: "cloudy.png",
 2: "cloudy.png",
@@ -31,7 +32,7 @@ IconMapping = {
 }
 
 def getIcon(weather_code):
-    return Image.open("./resources/" + IconMapping.get(weather_code, "sunny.png"))
+    return Image.open("./resources/" + IconMapping.get(weather_code, "error.png"))
 
 def getIconNight(weather_code):
     if weather_code == 0:
