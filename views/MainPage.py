@@ -1,6 +1,7 @@
 from tkinter import ttk
 from views.DailyForecastItem import DailyForecastItem
 from views.HourlyForecastItem import HourlyForecastItem
+from views.CurrentWeatherItem import CurrentWeatherItem
 
 
 class MainPage:
@@ -10,7 +11,6 @@ class MainPage:
         root.config(bg="skyblue")
 
         root.columnconfigure(0, weight=1)
-
         root.rowconfigure(0, weight=1)
         root.rowconfigure(1, weight=1)
         root.rowconfigure(2, weight=1)
@@ -30,6 +30,12 @@ class MainPage:
 
         current_weather = ttk.Frame(root, height=200 ,style='Frame1.TFrame')
         current_weather.grid(row=1, column=0, padx=5, pady=5, sticky="nsew")
+        current_weather.columnconfigure(0, weight=1)
+        current_weather.rowconfigure(0, weight=0)
+        current_weather.rowconfigure(1, weight=1)
+        ttk.Label(current_weather, text="Current weather", font=("Arial", 15)).grid(column=0, row=0, padx=5, pady=5, sticky="w")
+        current_weather_item = CurrentWeatherItem(current_weather, "2023-12-29T00:00", 15, 0, 0, 0, 0, 0, 0)
+        current_weather_item.grid(column=0, row=1, padx=5, pady=5, sticky="nsew")
 
 
         hourly_weather_count=12

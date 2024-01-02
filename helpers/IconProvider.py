@@ -32,3 +32,11 @@ IconMapping = {
 
 def getIcon(weather_code):
     return Image.open("./resources/" + IconMapping.get(weather_code, "sunny.png"))
+
+def getIconNight(weather_code):
+    if weather_code == 0:
+        return Image.open("./resources/sunny-night.png")
+    elif weather_code in [1,2,3]:
+        return Image.open("./resources/cloudy-night.png")
+    else:
+        return getIcon(weather_code)
