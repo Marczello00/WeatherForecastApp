@@ -8,15 +8,32 @@ def DownloadDataService(lat, long):
         
         if respuesta.status_code == 200:
             print("Datos descargados exitosamente.")
-            return AnalyzeReplyService(respuesta.text)
+            return (respuesta.text)
         else:
             print(f"Error al acceder a la URL. Código de estado: {respuesta.status_code}")
             return None
     except requests.RequestException as e:
         print(f"Error de conexión: {e}")
         return None
+    
+def getLatLong():
+    url = "http://ip-api.com/json/"
 
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            lat = data.get('lat')
+            lon = data.get('lon')
+            return(lat, lon)
+        else:
+            print(f"Error accessing the URL. Status code: {response.status_code}")
 
-res = DownloadDataService(20.1, 1)
+    except requests.RequestException as e:
+        print(f"Connection error: {e}")
+
+res2 = DownloadDataService(20.1, 1)
+print(res2)
+lat, lon= getLatLong()
+res= DownloadDataService(lat, lon)
 print(res)
-

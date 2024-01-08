@@ -1,24 +1,41 @@
 from models.WeatherForecastModel import WeatherForecastModel
 from models.DailyForecastModel import DailyForecastModel
 from models.HourlyForecastModel import HourlyForecastModel
+from services.DownloadDataService import DownloadDataService
 
 
-def AnalyzeReplyService(APIreply):
-    obj = WeatherForecastModel("2023-12-29T16:33", "15", "77", "1", "8", "3", "10", "90",
-                                                [
-                                                    DailyForecastModel("2023-12-19", "0", "20", "25", "2023-12-29T07:17", "2023-12-29T14:59", "0", "0", "0"),
-                                                    DailyForecastModel("2023-12-29", "55", "20", "25", "2023-12-29T07:17", "2023-12-29T14:59", "0", "0", "0"),
-                                                    DailyForecastModel("2023-12-09", "78", "20", "25", "2023-12-29T07:17", "2023-12-29T14:59", "0", "0", "0")],
-                                                [
-                                                    HourlyForecastModel("2023-12-29T07:00", "10", "0"),
-                                                    HourlyForecastModel("2023-12-29T08:00", "12", "1"),
-                                                    HourlyForecastModel("2023-12-29T09:00", "15", "2"),
-                                                    HourlyForecastModel("2023-12-29T10:00", "12", "55"),
-                                                    HourlyForecastModel("2023-12-29T11:00", "0", "78"),
-                                                    HourlyForecastModel("2023-12-29T12:00", "-5", "95"),
-                                                    HourlyForecastModel("2023-12-29T13:00", "-1", "22"),
-                                                    HourlyForecastModel("2023-12-29T14:00", "22", "lol"),
-                                                    HourlyForecastModel("2023-12-29T15:00", "3", "-1"),
-                                                    HourlyForecastModel("2023-12-29T16:00", "0", "0")]
-                                                    )
-    return obj
+def AnalyzeReplyService(weather_data):
+    
+    date = weather_data['current']['time']
+    temperature = weather_data['current']['temperature_2m']
+    humidity = weather_data['current']['relative_humidity_2m']
+    is_day = weather_data['current']['is_day']
+    rain = weather_data['current']['rain']
+    weather_code = weather_data['current']['weather_code']
+    wind_speed = weather_data['current']['wind_speed_10m']
+    wind_direction = weather_data['current']['wind_direction_10m']
+
+    daily_forecast_data = weather_data['daily']
+    daily_forecast = DailyForecastModel(date=date, weather_code=weather_code,
+                                        temperature_min=daily_forecast_data['temperature_2m_min'][0],
+                                        temperature_max=daily_forecast_data['temperature_2m_max'][0],
+                                        sunrise=daily_forecast_data['sunrise'][0],
+                                        sunset=daily_forecast_data['sunset'][0],
+                                        rain_sum=daily_forecast_data['rain_sum'][0],
+                                        wind_speed=daily_forecast_data['wind_speed_10m_max'][0],
+                                        wind_direction=daily_forecast_data['wind_direction_10m_dominant'][0])
+
+    hourly_forecast_data = weather_data['hourly']
+    hourly_forecast = HourlyForecastModel(date=date, temperature=hourly_forecast_data['temperature_2m'][0],
+                                          weather_code=hourly_forecast_data['weather_code'][0])
+
+    weather_forecast = WeatherForecastModel(date=date, temperature=temperature, humidity=humidity,
+                                            is_day=is_day, rain=rain, weather_code=weather_code,
+                                            wind_speed=wind_speed, wind_direction=wind_direction,
+                                            dailyForecast=daily_forecast, hourlyForecast=hourly_forecast)
+
+    return weather_forecast
+
+
+
+
