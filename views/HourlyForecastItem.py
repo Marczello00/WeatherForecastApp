@@ -14,7 +14,7 @@ class HourlyForecastItem(ttk.Frame):
         image= getIcon(hourly_forecast.weather_code)
         image = image.resize((50, 50))
         self.img = ImageTk.PhotoImage(image)
-        temperature_label_text = hourly_forecast.temperature + "°C"
+        temperature_label_text = str(hourly_forecast.temperature) + "°C"
         time_label_text = hourly_forecast.date.strftime("%H:%M")
 
 

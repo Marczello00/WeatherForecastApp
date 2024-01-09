@@ -24,28 +24,28 @@ def AnalyzeReplyService(weather_data):
     #first_daily_forecast = daily_forecast_data['time'][0]
     daily_forecast = []
     for i in range(len(daily_forecast_data['time'])):
-        daily_forecast.append({
-            'date': daily_forecast_data['time'][i],
-            'weather_code': daily_forecast_data['weather_code'][i],
-            'temperature_min': daily_forecast_data['temperature_2m_min'][i],
-            'temperature_max': daily_forecast_data['temperature_2m_max'][i],
-            'sunrise': daily_forecast_data['sunrise'][i],
-            'sunset': daily_forecast_data['sunset'][i],
-            'rain_sum': daily_forecast_data['rain_sum'][i],
-            'wind_speed': daily_forecast_data['wind_speed_10m_max'][i],
-            'wind_direction': daily_forecast_data['wind_direction_10m_dominant'][i]
-        })
+        daily_forecast.append(DailyForecastModel(
+        date=daily_forecast_data['time'][i],
+        weather_code=daily_forecast_data['weather_code'][i],
+        temperature_min=daily_forecast_data['temperature_2m_min'][i],
+        temperature_max=daily_forecast_data['temperature_2m_max'][i],
+        sunrise=daily_forecast_data['sunrise'][i],
+        sunset=daily_forecast_data['sunset'][i],
+        rain_sum=daily_forecast_data['rain_sum'][i],
+        wind_speed=daily_forecast_data['wind_speed_10m_max'][i],
+        wind_direction=daily_forecast_data['wind_direction_10m_dominant'][i]
+    ))
 
     # Extract data from 'hourly'
     hourly_forecast_data = weather_data_dict['hourly']
     #first_hourly_forecast = hourly_forecast_data['time'][0]
     hourly_forecast = []
     for i in range(len(hourly_forecast_data['time'])):
-        hourly_forecast.append({
-            'date': hourly_forecast_data['time'][i],
-            'temperature': hourly_forecast_data['temperature_2m'][i],
-            'weather_code': hourly_forecast_data['weather_code'][i]
-        })
+        hourly_forecast.append(HourlyForecastModel(
+        date=hourly_forecast_data['time'][i],
+        temperature=hourly_forecast_data['temperature_2m'][i],
+        weather_code=hourly_forecast_data['weather_code'][i]
+    ))
 
     # Create the main WeatherForecastModel
     weather_forecast = WeatherForecastModel(date=date, temperature=temperature, humidity=humidity,

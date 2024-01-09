@@ -61,7 +61,7 @@ def DownloadDataService(lati, longi):
         response = requests.get(url)
         if response.status_code == 200:
             print("Data downloaded successfully.")
-            return (response.text)
+            return AnalyzeReplyService(response.text)
         else:
             print(f"Error accessing the URL. Status code: {response.status_code}")
             return None
@@ -104,23 +104,31 @@ def AnalyzeReplyService(weather_data):
 
     # Extract data from 'daily'
     daily_forecast_data = weather_data_dict['daily']
-    first_daily_forecast = daily_forecast_data['time'][0]
-    daily_forecast = DailyForecastModel(date=first_daily_forecast,
-                                        weather_code=daily_forecast_data['weather_code'][0],
-                                        temperature_min=daily_forecast_data['temperature_2m_min'][0],
-                                        temperature_max=daily_forecast_data['temperature_2m_max'][0],
-                                        sunrise=daily_forecast_data['sunrise'][0],
-                                        sunset=daily_forecast_data['sunset'][0],
-                                        rain_sum=daily_forecast_data['rain_sum'][0],
-                                        wind_speed=daily_forecast_data['wind_speed_10m_max'][0],
-                                        wind_direction=daily_forecast_data['wind_direction_10m_dominant'][0])
+    #first_daily_forecast = daily_forecast_data['time'][0]
+    daily_forecast = []
+    for i in range(len(daily_forecast_data['time'])):
+        daily_forecast.append({
+            'date': daily_forecast_data['time'][i],
+            'weather_code': daily_forecast_data['weather_code'][i],
+            'temperature_min': daily_forecast_data['temperature_2m_min'][i],
+            'temperature_max': daily_forecast_data['temperature_2m_max'][i],
+            'sunrise': daily_forecast_data['sunrise'][i],
+            'sunset': daily_forecast_data['sunset'][i],
+            'rain_sum': daily_forecast_data['rain_sum'][i],
+            'wind_speed': daily_forecast_data['wind_speed_10m_max'][i],
+            'wind_direction': daily_forecast_data['wind_direction_10m_dominant'][i]
+        })
 
     # Extract data from 'hourly'
     hourly_forecast_data = weather_data_dict['hourly']
-    first_hourly_forecast = hourly_forecast_data['time'][0]
-    hourly_forecast = HourlyForecastModel(date=first_hourly_forecast,
-                                          temperature=hourly_forecast_data['temperature_2m'][0],
-                                          weather_code=hourly_forecast_data['weather_code'][0])
+    #first_hourly_forecast = hourly_forecast_data['time'][0]
+    hourly_forecast = []
+    for i in range(len(hourly_forecast_data['time'])):
+        hourly_forecast.append({
+            'date': hourly_forecast_data['time'][i],
+            'temperature': hourly_forecast_data['temperature_2m'][i],
+            'weather_code': hourly_forecast_data['weather_code'][i],
+        })
 
     # Create the main WeatherForecastModel
     weather_forecast = WeatherForecastModel(date=date, temperature=temperature, humidity=humidity,
@@ -132,4 +140,4 @@ def AnalyzeReplyService(weather_data):
 
 
 
-print(DownloadDataService(41.3851, 2.1734))
+print(DownloadDataService(41.3851, 2.1734).hourlyForecast)
