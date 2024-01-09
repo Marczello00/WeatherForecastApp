@@ -1,6 +1,7 @@
 view/__pycache__/MainPage.cpython-312.pyc
 .vscode/settings.json
 .idea/workspace.xml
+.cache.sqlite
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,pycharm,pycharm+all,pycharm+iml,python,pythonvanilla,circuitpython
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,pycharm,pycharm+all,pycharm+iml,python,pythonvanilla,circuitpython
 
