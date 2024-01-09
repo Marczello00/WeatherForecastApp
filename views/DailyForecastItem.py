@@ -12,7 +12,7 @@ class DailyForecastItem(ttk.Frame):
 
         self.date = daily_forecast.date.strftime("%A, %d. %B")
 
-        label_text = str(daily_forecast.temperature_min) + "°C" + " / " + str(daily_forecast.temperature_max) + "°C"
+        label_text = str(daily_forecast.temperature_min) + "°C" + "  -  " + str(daily_forecast.temperature_max) + "°C"
 
         image = getIcon(daily_forecast.weather_code)
         image = image.resize((150, 150))
