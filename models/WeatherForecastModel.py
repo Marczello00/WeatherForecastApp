@@ -5,7 +5,7 @@ from models.BaseWeatherForecastModel import BaseWeatherForecastModel
 
 class WeatherForecastModel(BaseWeatherForecastModel):
     def __init__(self, date:str, temperature:str, humidity:str, is_day:str, rain:str, weather_code:str, wind_speed:str, wind_direction:str,
-                 dailyForecast:DailyForecastModel, hourlyForecast:HourlyForecastModel):
+                 dailyForecast:list, hourlyForecast:list):
         super().__init__(weather_code, date)
         self.temperature = temperature
         self.humidity = humidity

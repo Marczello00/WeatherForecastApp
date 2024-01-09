@@ -65,19 +65,18 @@ class MainPage:
         print("Loading...")
 
 
-    def InsertData(self, currentWeather):
-        ##Current weather
-        #TODO - change hardcoded city name
-        ttk.Label(self.current_weather, text="Current weather in "+"Porto", font=("Arial", 15)).grid(column=0, row=0, padx=5, pady=5, sticky="w")
+    def InsertData(self, currentWeather, city_name):
+    ## Current weather
+        ttk.Label(self.current_weather, text=f"Current weather in {city_name}", font=("Arial", 15)).grid(column=0, row=0, padx=5, pady=5, sticky="w")
         current_weather_item = CurrentWeatherItem(self.current_weather, currentWeather)
         current_weather_item.grid(column=0, row=1, padx=5, pady=5, sticky="nsew")
 
-        ##Hourly forecast
+    ## Hourly forecast
         for i, item in enumerate(currentWeather.hourlyForecast):
             self.hourly_weather.columnconfigure(i, weight=1)
             HourlyForecastItem(self.hourly_weather, item).grid(column=i, row=10, padx=5, pady=10, sticky="nsew")
- 
-        ##Daily forecast
+
+    ## Daily forecast
         for i, item in enumerate(currentWeather.dailyForecast):
             self.daily_weather.columnconfigure(i, weight=1)
             DailyForecastItem(self.daily_weather, item).grid(column=i, row=0, padx=5, pady=15, sticky="nsew")
@@ -85,6 +84,20 @@ class MainPage:
 
     def SearchButton_clicked(self):
         #To be obtained from another API
-        #data = DownloadDataService(lat, long)
-        data = DownloadDataService("lol", "lol")
-        self.InsertData(data)
+
+        cities_europe = {
+            'Amsterdam': (52.3676, 4.9041),
+            'Barcelona': (41.3851, 2.1734),
+            'Berlin': (52.5200, 13.4050),
+            'London': (51.5099, -0.1180),
+            'Madrid': (40.4168, -3.7038),
+            'Paris': (48.8566, 2.3522),
+            'Rome': (41.9028, 12.4964),
+            'Vienna': (48.8566, 16.3522),
+            'Zurich': (47.3769, 8.5417)
+        }
+
+        city='Paris'
+        lat, lon=cities_europe[city]
+        data = DownloadDataService(lat, lon)
+        self.InsertData(data,city)
