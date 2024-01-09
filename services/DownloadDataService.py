@@ -25,7 +25,8 @@ def getLatLong():
             data = response.json()
             lat = data.get('lat')
             lon = data.get('lon')
-            return(lat, lon)
+            city = data.get('city')
+            return(lat, lon, city)
         else:
             print(f"Error accessing the URL. Status code: {response.status_code}")
     except requests.RequestException as e:
