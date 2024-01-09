@@ -1,10 +1,8 @@
 from tkinter import ttk
+from datetime import datetime
 from views.DailyForecastItem import DailyForecastItem
 from views.HourlyForecastItem import HourlyForecastItem
 from views.CurrentWeatherItem import CurrentWeatherItem
-from models.DailyForecastModel import DailyForecastModel
-from models.HourlyForecastModel import HourlyForecastModel
-from models.WeatherForecastModel import WeatherForecastModel
 from services.DownloadDataService import DownloadDataService
 
 
@@ -72,7 +70,9 @@ class MainPage:
         current_weather_item.grid(column=0, row=1, padx=5, pady=5, sticky="nsew")
 
     ## Hourly forecast
-        for i, item in enumerate(currentWeather.hourlyForecast[0:12]):
+        current_time = datetime.now()
+        hourlyforecast= [item for item in currentWeather.hourlyForecast if item.date.hour>current_time.hour]
+        for i, item in enumerate(hourlyforecast[0:12]):
             self.hourly_weather.columnconfigure(i, weight=1)
             HourlyForecastItem(self.hourly_weather, item).grid(column=i, row=10, padx=5, pady=10, sticky="nsew")
 
