@@ -72,7 +72,7 @@ class MainPage:
         current_weather_item.grid(column=0, row=1, padx=5, pady=5, sticky="nsew")
 
     ## Hourly forecast
-        for i, item in enumerate(currentWeather.hourlyForecast):
+        for i, item in enumerate(currentWeather.hourlyForecast[0:12]):
             self.hourly_weather.columnconfigure(i, weight=1)
             HourlyForecastItem(self.hourly_weather, item).grid(column=i, row=10, padx=5, pady=10, sticky="nsew")
 
